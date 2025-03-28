@@ -191,4 +191,9 @@ return [
     */
 
     'token_username' => env('BACKPACK_TOKEN_USERNAME', false),
+
+    'widgets' => [
+        \App\Admin\Widgets\ProductsWidget::class,
+        \App\Admin\Widgets\CategoriesWidget::class,
+    ],
 ];

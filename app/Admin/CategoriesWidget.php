@@ -2,25 +2,25 @@
 
 namespace App\Admin\Widgets;
 
-use TCG\Voyager\Widgets\BaseDimmer;
+use Backpack\CRUD\app\Library\Widget;
 use App\Models\Category;
 
-class CategoriesWidget extends BaseDimmer
+class CategoriesWidget extends Widget
 {
-    protected $config = [];
+    protected $view = 'admin.widgets.categories';
 
-    public function run()
+    /**
+     * Get widget data
+     *
+     * @return array
+     */
+    public function data()
     {
-        $count = Category::count();
-        return view('voyager::dimmer', array_merge($this->config, [
-            'icon'   => 'voyager-categories',
-            'title'  => "Категории",
-            'text'   => "Всего категорий: {$count}",
-            'button' => [
-                'text' => 'Управление категориями',
-                'link' => route('voyager.categories.index'),
-            ],
-            'image' => voyager_asset('images/widget-backgrounds/02.jpg'),
-        ]));
+        return [
+            'count' => Category::count(),
+            'title' => 'Категории',
+            'link'  => backpack_url('category'),
+            'icon'  => 'la la-folder'
+        ];
     }
 }

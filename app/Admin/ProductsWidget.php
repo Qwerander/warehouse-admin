@@ -2,25 +2,25 @@
 
 namespace App\Admin\Widgets;
 
-use TCG\Voyager\Widgets\BaseDimmer;
+use Backpack\CRUD\app\Library\Widget;
 use App\Models\Product;
 
-class ProductsWidget extends BaseDimmer
+class ProductsWidget extends Widget
 {
-    protected $config = [];
+    protected $view = 'admin.widgets.products';
 
-    public function run()
+    /**
+     * Get widget data
+     *
+     * @return array
+     */
+    public function data()
     {
-        $count = Product::count();
-        return view('voyager::dimmer', array_merge($this->config, [
-            'icon'   => 'voyager-bag',
-            'title'  => "Товары",
-            'text'   => "Всего товаров: {$count}",
-            'button' => [
-                'text' => 'Управление товарами',
-                'link' => route('voyager.products.index'),
-            ],
-            'image' => voyager_asset('images/widget-backgrounds/03.jpg'),
-        ]));
+        return [
+            'count' => Product::count(),
+            'title' => 'Товары',
+            'link' => backpack_url('product'),
+            'icon' => 'la la-shopping-cart'
+        ];
     }
 }
