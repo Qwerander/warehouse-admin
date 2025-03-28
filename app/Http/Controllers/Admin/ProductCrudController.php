@@ -42,7 +42,7 @@ class ProductCrudController extends CrudController
         CRUD::field('name')->label('Название')->type('text');
         CRUD::field('sku')->label('Артикул')->type('text');
         CRUD::field('category_id')->label('Категория')
-            ->type('select2')
+            ->type('select')  // Стало select
             ->entity('category')
             ->model('App\Models\Category')
             ->attribute('name');
